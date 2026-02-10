@@ -31,7 +31,7 @@ export const getProductById = async (req: Request, res: Response): Promise<void>
     const product = await productModel.findById(req.params.id).populate("category");
 
     if (!product) {
-      res.status(400).json({ message: "Product not found" });
+      res.status(404).json({ message: "Product not found" });
       return;
     }
 
@@ -52,7 +52,7 @@ export const updateProduct = async (req: Request, res: Response): Promise<void> 
     const product = await productModel.findByIdAndUpdate(req.params.id, productData, { new: true });
 
     if (!product) {
-      res.status(400).json({ message: "Product not found" });
+      res.status(404).json({ message: "Product not found" });
       return;
     }
 
@@ -67,7 +67,7 @@ export const deleteProduct = async (req: Request, res: Response): Promise<void> 
     const product = await productModel.findByIdAndDelete(req.params.id);
 
     if (!product) {
-      res.status(400).json({ message: "Product not found" });
+      res.status(404).json({ message: "Product not found" });
       return;
     }
 
